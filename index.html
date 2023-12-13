@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <!-- Мета-теги для кодування та властивостей відображення -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Заголовок сторінки -->
+      <title>Самостійна робота</title>
+      <!-- Посилання на зовнішні CSS-стилі та шрифти -->
+      <link rel="icon" href="images /27.png" sizes="40x40" type="image/png">
+      <link rel="stylesheet" href="fonts /bi/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /style.css" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bellota&family=Comfortaa:wght@300&family=Cormorant&family=Cormorant+Infant:wght@400;500&family=Kiwi+Maru:wght@500&family=Noto+Serif&family=Nunito&family=PT+Sans+Caption&family=Playfair+Display&family=Poiret+One&family=Raleway:ital,wght@0,100;0,200;1,100;1,200&family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
+   </head>
+   <body>
+      <div class="alert-container alert-hide" id="myAlert">
+         <div class="alert-box">
+             <h2>Це ваше повідомлення!</h2>
+             <button onclick="hideAlert()">Закрити</button>
+         </div>
+     </div>
+      <!-- Навігаційне меню з логотипом та посиланнями -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+         <div class="container-fluid">
+            <a class="navbar-brand" href="#">MaliVa</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="#">Головна</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/aboutus.html">Про нас</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/index.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Локації
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#map1">м. Львів, Сахарова 23</a></li>
+                        <li><a class="dropdown-item" href="#map2">м. Львів, Бандери 12</a></li>
+                        <li>
+                           <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Інші міста...</a></li>
+                     </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Меню
+                     </a>
+                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/xmasgifts.html">NEW Різдвяні подарунки</a></li>
+                        <li><a class="dropdown-item" href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/breakfast.html">Сніданки</a></li>
+                        <li><a class="dropdown-item" href="#">Випічка</a></li>
+                        <li><a class="dropdown-item" href="#">Десерти</a></li>
+                        <li><a class="dropdown-item" href="#">Напої</a></li>
+                        <li><a class="dropdown-item" href="#">Макарони</a></li>
+                        <li><a class="dropdown-item" href="#">Еклери</a></li>
+                        <li><a class="dropdown-item" href="#">Кекси</a></li>
+                     </ul>
+                  </li>
+               </ul>
+               <a href="https://www.instagram.com/rudevy4ka/" target="_blank">
+                  <i class="bi bi-instagram big-icon"></i>
+                </a>
+               <a href="https://www.facebook.com/marta.rudevich/?locale=uk_UA" target="_blank">                 
+                  <i class="bi bi-facebook big-icon"></i>
+               </a>
+               <a href="https://www.tiktok.com/@x0fqt" target="_blank">  
+                  <i class="bi bi-tiktok big-icon"></i>
+               </a>
+               <form class="d-flex" role="search">
+                  <div class="input-container">
+                     <input class="form-control me-2" type="search" placeholder="" aria-label="Search" id="searchInput">
+                     <i class="bi bi-search search-icon" id="searchIcon"></i>
+                  </div>
+                  <button class="btn-custom mx-2" type="submit">Пошук</button>
+               </form>
+            </div>
+         </div>
+      </nav>
+      <div class="container">
+         <div class="image-container">
+            <a href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/xmasgifts.html">
+               <img src="images /28.jpg">
+           </a>
+           
+            <div class="buttons">
+               <br></br>
+               <a href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/xmasgifts.html">
+                  <button class="btn-custom mx-2" type="submit">Замовити Пампухи</button>
+              </a>
+              <a href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/breakfast.html">
+               <button class="btn-custom mx-2" type="submit">Замовити сніданок</button>
+            </a>
+               <br></br>
+           </div>
+         </div>
+         <h1>Новинки</h1>
+         <!-- Карусель з новинками продукції -->
+         <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="card-group">
+                     <div class="card">
+                        <img src="images /30.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Медівник</h5>
+                           <p class="card-text">має м'яку текстуру і характерний медовий смак, що робить його популярним у святкові та традиційні часи.</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /31.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Кокос</h5>
+                           <p class="card-text"></p>
+                           <p>кокосовий дакуаз, хрусткий прошарок на основі карамельного шоколаду, мигдалеве праліне з корицею, кокосовий мус на основі білого шоколаду, кокосова стружка</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /32.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Грушевий даніш</h5>
+                           <p class="card-text">
+                           <p>ніжне поєдання томленої груші у вині і спецій закохає тебе з перших шматочків.🍐</p>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="card-group">
+                     <div class="card">
+                        <img src="images /33.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Цукерка Роше</h5>
+                           <p class="card-text">чорний бельгійській шоколад, хрустка вафля, в'ялена журалина молочний бельгійській шоколад, хрустка вафля, фундукова паста, фундук, чорнослив білий бельгійській шоколад, хрустка вафля, фісташкова паста, карамелізована фісташка, фісташка</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /34.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Апельсин-Морква з корицею</h5>
+                           <p class="card-text">вага: 500 г бісквіт з морквою, цедрою, корицею, грецьким горіхом, апельсинова пропитка, апельсинове компоте з лікером Grand Marnier, крем на основі сиру Філадельфія</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /35.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Цукерки Роше</h5>
+                           <p class="card-text">чорний бельгійській шоколад, хрустка вафля, в'ялена журалина молочний бельгійській шоколад, хрустка вафля, фундукова паста, фундук, чорнослив білий бельгійській шоколад, хрустка вафля, фісташкова паста, карамелізована фісташка, фісташка</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="card-group">
+                     <div class="card">
+                        <img src="images /1.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Баскський пиріг</h5>
+                           <p class="card-text">Пісочне тісто, мигдалевий франжипан, джем з кураги і рому</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /2.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Круасан Мак-Вишня</h5>
+                           <p class="card-text">Зустрічай новий довгоочікуваний круасан в MaliVa. — Мак-Вишня 🥐</p>
+                           <p>Ідеальне поєднання вишневого компоте з маковою начинкою повертає тебе у глибокі спогади дитинства.</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /3.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Макарон Груша-Карамель</h5>
+                           <p class="card-text">
+                           <ul>
+                              <li>Спочатку це поєднання всі полюбили в торті.</li>
+                              <li>Далі — еклер, який теж став одним із фаворитів нашої команди та гостей.</li>
+                              <li>І тому цієї осені ми додали в меню макарон з цим ж поєднанням.</li>
+                           </ul>
+                           <p>Спробуєш? Приходь, дегустуй, ділись враженнями!🍐</p>
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="card-group">
+                     <div class="card">
+                        <img src="images /4.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Сирник з персиком</h5>
+                           <p class="card-text">Класичний сирник з персиком , цедрою, шоколадною глазурʼю і шоколадною основою</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /5.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Солені сирники з шпинатним песто та лососем</h5>
+                           <p class="card-text">Сметана, гарбузове насіння, сир Пармезан, спеція Заатар, бебі шпинат</p>
+                           <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /6.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Солені сирники з шпинатним песто та сметаною</h5>
+                           <p class="card-text">Солені сирники з шпинатним песто та сметаною</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="card-group">
+                     <div class="card">
+                        <img src="images /7.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Тарт Татен MaliVa</h5>
+                           <p class="card-text">Хрустке листкове тісто, мигдалевий франжипан, яблучне конфі, карамелізовані печені яблука, мигдалеві пластівці
+                           </p>
+                           <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /8.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Круасан Арахіс-Смородина</h5>
+                           <p class="card-text">Ганаш на основі білого шоколаду та арахісового праліне, смородинове конфі</p>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <img src="images /9.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                           <h5 class="card-title">Вівсяна каша з карамелізованими яблуками</h5>
+                           <p class="card-text">Вівсяні пластівці, молоко, карамелізовані яблука, насіння Чіа, мигдалеві пластівці, мед</p>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+         </div>
+         <!-- Додайте новий контейнер з 4 колонками і 2 рядками -->
+         <div class="container">
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Сніданки</div>
+                     <a href="/Users/mrudevych/Documents/University/2 курс/1 семестр/веб/sr/breakfast.html">
+                     <img src="images /10.jpeg" alt="Зображення 1"
+                        onmouseover="changeImageOnHover(this, 'images /18.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /10.jpeg')"></a>
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Випічка</div>
+                     <img src="images /11.jpeg" alt="Зображення 2"
+                        onmouseover="changeImageOnHover(this, 'images /19.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /11.jpeg')">
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Десерти</div>
+                     <img src="images /12.jpeg" alt="Зображення 3"
+                        onmouseover="changeImageOnHover(this, 'images /20.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /12.jpeg')">
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Торти на сьогодні</div>
+                     <img src="images /13.jpeg" alt="Зображення 4"
+                        onmouseover="changeImageOnHover(this, 'images /21.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /13.jpeg')">
+                  </div>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Напої</div>
+                     <img src="images /14.jpeg" alt="Зображення 5"
+                        onmouseover="changeImageOnHover(this, 'images /22.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /14.jpeg')">
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Макарони</div>
+                     <img src="images /15.jpeg" alt="Зображення 6"
+                        onmouseover="changeImageOnHover(this, 'images /23.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /15.jpeg')">
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Еклери</div>
+                     <img src="images /16.jpeg" alt="Зображення 7"
+                        onmouseover="changeImageOnHover(this, 'images /24.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /16.jpeg')">
+                  </div>
+               </div>
+               <div class="col-md-3">
+                  <div class="image-container">
+                     <div class="image-text">Готуємо вдома</div>
+                     <img src="images /17.jpeg" alt="Зображення 8"
+                        onmouseover="changeImageOnHover(this, 'images /25.jpeg')"
+                        onmouseout="restoreImageOnMouseOut(this, 'images /17.jpeg')">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="container">
+            <!-- Контейнери з інтегрованими Google Maps -->
+            <div class="row">
+               <div class="col-md-6">
+                  <iframe id="map1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.933171056436!2d24.00919577633243!3d49.82492123220593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473ae7862bf6fa15%3A0xa4699edd6ff650d6!2z0LLRg9C70LjRhtGPINCQ0LrQsNC00LXQvNGW0LrQsCDQkNC90LTRgNGW0Y8g0KHQsNGF0LDRgNC-0LLQsCwgMjMsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjCwgNzkwMDA!5e0!3m2!1suk!2sua!4v1698876675217!5m2!1suk!2sua" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               </div>
+               <div class="col-md-6">
+                  <iframe id="map2" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.3820179373583!2d24.013273276333003!3d49.835279131466606!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add7a498f198f%3A0x4e59130a4e317a7d!2z0LLRg9C70LjRhtGPINCh0YLQtdC_0LDQvdCwINCR0LDQvdC00LXRgNC4LCAxMiwg0JvRjNCy0ZbQsiwg0JvRjNCy0ZbQstGB0YzQutCwINC-0LHQu9Cw0YHRgtGMLCA3OTAwMA!5e0!3m2!1suk!2sua" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
+      </div>
+      <!-- Футер сторінки з авторським правом -->
+      <footer class="bg-primary text-center py-3">
+         <p>&copy; MaliVa</p>
+      </footer>
+      <script src="js /bootstrap.bundle.js"></script>
+
+      <!-- Скрипт для зміни зображення при наведенні курсора -->
+      <script>
+         function changeImageOnHover(element, newSrc) {
+           element.setAttribute("src", newSrc);
+         }
+         
+         function restoreImageOnMouseOut(element, originalSrc) {
+           element.setAttribute("src", originalSrc);
+         }
+      </script>
+      <!-- Скрипт для зміни видимості іконки лупи при фокусу на полі вводу -->
+      <script>
+         // Отримання елементів поля вводу та іконки лупи за ідентифікаторами
+         const searchInput = document.getElementById('searchInput');
+         const searchIcon = document.getElementById('searchIcon');
+         
+         // Додавання слухача подій для фокусу на полі вводу
+         searchInput.addEventListener('focus', function() {
+         // При фокусі на полі вводу ховаємо іконку лупи
+         searchIcon.style.display = 'none';
+         });
+         
+         // Додавання слухача подій для зміни фокусу на полі вводу
+         searchInput.addEventListener('blur', function() {
+         // При зміні фокусу на полі вводу відображаємо іконку лупи
+         searchIcon.style.display = 'block';
+         });
+         
+      </script>
+   </body>
+</html>
