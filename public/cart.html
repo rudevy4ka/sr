@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Заголовок сторінки -->
+    <title>Кошик MaliVa</title>
+      <!-- Посилання на зовнішні CSS-стилі та шрифти -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+      <link rel="icon" href="images /27.png" sizes="40x40" type="image/png">
+      <link rel="stylesheet" href="fonts /bi/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /style.css" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bellota&family=Comfortaa:wght@300&family=Cormorant&family=Cormorant+Infant:wght@400;500&family=Kiwi+Maru:wght@500&family=Noto+Serif&family=Nunito&family=PT+Sans+Caption&family=Playfair+Display&family=Poiret+One&family=Raleway:ital,wght@0,100;0,200;1,100;1,200&family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
+  <style>
+    .cart-item {
+      background-color: #FAE6E7;
+      border: 1px solid #D9A3A3;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-item img {
+      width: 100px;
+      height: auto;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .cart-details {
+      flex: 1;
+    }
+
+    .cart-price {
+      font-weight: bold;
+      font-size: 18px;
+      color: #992F45;
+    }
+
+    .remove-btn {
+      background-color: #992F45;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #D9A3A3;
+      color: #fff;
+    }
+
+    .total-block {
+      background-color: #E2A8A6;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .total-block h3 {
+      color: #992F45;
+      font-size: 28px;
+    }
+
+    .checkout-btn {
+      background-color: #992F45;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #fff;
+      color: #992F45;
+      border: 1px solid #992F45;
+    }
+        .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.4);
+    }
+    
+    .modal-content {
+      background-color: #FAE6E7;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #D9A3A3;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+    }
+    
+    .close {
+      color: #992F45;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: #992F45;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #D9A3A3;
+      border-radius: 5px;
+    }
+    
+    .submit-btn {
+      background-color: #992F45;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .submit-btn:hover {
+      background-color: #D9A3A3;
+    }
+  </style>
+</head>
+<body style="background-color: #E2A8A6; font-family: 'Comfortaa';">
+
+  <div class="container mt-5">
+    <h1 class="text-center mb-4" style="color:#992F45;">Ваш кошик</h1>
+    <div id="cart-items"></div>
+
+     <div class="total-block mt-4">
+      <h3 id="total">Загалом: 0 грн</h3>
+      <button id="checkout-btn" class="checkout-btn">Оформити замовлення</button>
+    </div>
+  </div>
+  </div>
+    <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 style="color:#992F45;">Оформлення замовлення</h2>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="firstName">Ім'я:</label>
+          <input type="text" id="firstName" name="firstName" autocomplete="given-name" required>
+        </div>
+        <div class="form-group">
+          <label for="lastName">Прізвище:</label>
+          <input type="text" id="lastName" name="lastName" autocomplete="family-name" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Номер телефону:</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Адреса доставки:</label>
+          <input type="text" id="address" name="address" autocomplete="street-address" required>
+        </div>
+        <button type="submit" class="submit-btn">Підтвердити замовлення</button>
+      </form>
+    </div>
+  </div>
+
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const container = document.getElementById('cart-items');
+      const totalDisplay = document.getElementById('total');
+      container.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        container.innerHTML = "<p class='text-center'>Ваш кошик порожній</p>";
+        totalDisplay.textContent = `Загалом: 0 грн`;
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+
+        total += item.price;
+
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-details">
+            <h5 style="color:#992F45;">${item.name}</h5>
+            <p>${item.description || ''}</p>
+            <div class="cart-price">${item.price} грн</div>
+          </div>
+          <button class="remove-btn" onclick="removeFromCart(${index})">Видалити</button>
+        `;
+
+        container.appendChild(div);
+      });
+
+      totalDisplay.textContent = `Загалом: ${total} грн`;
+    }
+
+    function removeFromCart(index) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    loadCart();
+       // Додаємо обробник подій для кнопки оформлення замовлення
+    document.getElementById('checkout-btn').addEventListener('click', function() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert('Ваш кошик порожній!');
+        return;
+      }
+      document.getElementById('registrationModal').style.display = 'block';
+    });
+    
+    // Закриття модального вікна
+    document.querySelector('.close').addEventListener('click', function() {
+      document.getElementById('registrationModal').style.display = 'none';
+    });
+    
+    // Відправка форми
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const clientData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        products: cart.map(item => ({ id: item.id, quantity: 1 })) // Припускаємо, що кожен товар має id
+      };
+      
+      // Відправка даних на сервер
+      fetch('http://localhost:3000/place-order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(clientData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Замовлення успішно оформлено!');
+          localStorage.removeItem('cart');
+          loadCart();
+          document.getElementById('registrationModal').style.display = 'none';
+          // Очистити форму
+          document.getElementById('registrationForm').reset();
+        } else {
+          alert('Помилка при оформленні замовлення: ' + (data.message || ''));
+        }
+      })
+      .catch(error => {
+        console.error('Помилка:', error);
+        alert('Сталася помилка при відправці замовлення');
+      });
+    });
+    loadCart();
+  </script>
+
+
+
+</body>
+</html>

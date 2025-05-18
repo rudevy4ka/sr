@@ -5,33 +5,25 @@
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <!-- Заголовок сторінки -->
-      <title>Самостійна робота</title>
-      <style>
-        /* Стилі для таймера */
-        #timer {
-            font-size: 24px;
-            font-family: 'Comfortaa', sans-serif;
-            color: #992F45;
-            text-align: center;
-            margin-top: 20px;
-        }
-    </style>
+      <title>Курсова робота</title>
       <!-- Посилання на зовнішні CSS-стилі та шрифти -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
       <link rel="icon" href="images /27.png" sizes="40x40" type="image/png">
       <link rel="stylesheet" href="fonts /bi/bootstrap-icons.css" rel="stylesheet">
       <link rel="stylesheet" href="css /bootstrap.css" rel="stylesheet">
-      <link rel="stylesheet" href="css /styleNEW.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /style.css" rel="stylesheet">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bellota&family=Comfortaa:wght@300&family=Cormorant&family=Cormorant+Infant:wght@400;500&family=Kiwi+Maru:wght@500&family=Noto+Serif&family=Nunito&family=PT+Sans+Caption&family=Playfair+Display&family=Poiret+One&family=Raleway:ital,wght@0,100;0,200;1,100;1,200&family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
    </head>
+   
    <body>
+<body class="mothers-day-page"></body>
      <!-- Навігаційне меню з логотипом та посиланнями -->
      <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-           <a class="navbar-brand" href="./index.html">MaliVa</a>
+           <a class="navbar-brand" href="#">MaliVa</a>
            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
            <span class="navbar-toggler-icon"></span>
            </button>
@@ -61,7 +53,7 @@
                     Меню
                     </a>
                     <ul class="dropdown-menu">
-                       <li><a class="dropdown-item" href="./xmasgifts.html">NEW Різдвяні подарунки</a></li>
+                       <li><a class="dropdown-item" href="./xmasgifts.html">NEW Подарунки до дня матері</a></li>
                        <li><a class="dropdown-item" href="./breakfast.html">Сніданки</a></li>
                        <li><a class="dropdown-item" href="#">Випічка</a></li>
                        <li><a class="dropdown-item" href="#">Десерти</a></li>
@@ -81,26 +73,37 @@
               <a href="https://www.tiktok.com/@x0fqt" target="_blank">  
                  <i class="bi bi-tiktok big-icon"></i>
               </a>
-              <form class="d-flex" role="search">
-                 <div class="input-container">
-                    <input class="form-control me-2" type="search" placeholder="" aria-label="Search" id="searchInput">
-                    <i class="bi bi-search search-icon" id="searchIcon"></i>
-                 </div>
-                 <button class="btn-custom mx-2" type="submit">Пошук</button>
-              </form>
+             <form class="d-flex" role="search" id="searchForm">
+    <div class="input-container">
+        <input class="form-control me-2" type="search" placeholder="Пошук..." aria-label="Search" id="searchInput">
+        <i class="bi bi-search search-icon" id="searchIcon"></i>
+        <div id="searchResultsContainer" class="search-results-bottom"></div>
+    </div>
+    <button class="btn-custom mx-2" type="submit">Пошук</button>
+</form>
            </div>
         </div>
      </nav>
      <div class="container">
-        <img src="images /38.jpeg">
+        <img src="images /28.jpg">
         <br></br>
-        <h2 class="center-align">До Різдва залишилось:</h2>
-        <div id="timer"></div>
+        <h2></h2>
         <br></br>
-        <h2>Встигни замововити подарункові набори від MaliVa!🎅🏽</h2>
+        <h1>Порадуй найріднішу!🌸</h1>
+        <div class="container">
+        <br><br>
+
+            <div id="product-container" class="row"></div>
+
         
-    <div class="row">
-      <!-- Перший ряд -->
+        <a href="cart.html" class="floating-cart" title="Перейти до кошика">
+            <i class="bi bi-bag-fill"></i>
+            <span id="cart-count">0</span>
+        </a>
+    </div>
+        
+    <!-- <div class="row">
+     
       <div class="col-md-6 mb-4">
         <div class="card" style="width: 100%;">
           <img src="images /39.jpeg" class="card-img-top" alt="...">
@@ -120,12 +123,12 @@
               <button type="button" class="button" data-dismiss="modal">×</button>
             </div>
             <div class="modal-body">
-              <!-- Вміст модального вікна, може бути розширений згідно з потребами -->
+           
               <p>
                 <h2>Оберіть начинку та кількість:</h2>
         
                 <form>
-                    <!-- Позначення для куті (350г) -->
+                   
                     <div class="form-group">
                         <label>Куті (350г)</label>
                         <div class="input-group">
@@ -135,7 +138,7 @@
                         </div>
                     </div>
         
-                    <!-- Позначення для маку -->
+                    
                     <div class="form-group">
                         <label>Мак</label>
                         <div class="input-group">
@@ -153,7 +156,7 @@
                         </div>
                     </div>
         
-                    <!-- Позначення для Троянди -->
+                   
                     <div class="form-group">
                         <label>Троянда </label>
                         <div class="input-group">
@@ -163,7 +166,6 @@
                         </div>
                     </div>
         
-                    <!-- Позначення для Шоколаду -->
                     <div class="form-group">
                         <label>Шоколад</label>
                         <div class="input-group">
@@ -172,7 +174,7 @@
                             <button type="button" class="btn btn-outline-secondary" onclick="increment('shokolad')">+</button>
                         </div>
                     </div>
-                    <!-- Позначення для Карамелі -->
+                    
                     <div class="form-group">
                         <label>Карамель</label>
                         <div class="input-group">
@@ -182,7 +184,7 @@
                         </div>
                     </div>
 
-                    <!-- Позначення для Чорниці-маскарпоне -->
+                    
                     <div class="form-group">
                         <label>Чорниця-маскарпоне</label>
                         <div class="input-group">
@@ -192,7 +194,7 @@
                         </div>
                     </div>
 
-                    <!-- Позначення для Без начинки -->
+                   
                     <div class="form-group">
                         <label>Без начинки </label>
                         <div class="input-group">
@@ -202,7 +204,7 @@
                         </div>
                     </div>
         
-                    <!-- Кнопка для відправки замовлення -->
+                    
                     <button type="button" class="btn-custom mx-2" onclick="submitOrder()">Замовити</button>
                 </form>
             </p>
@@ -224,7 +226,7 @@
     </div>
   
     <div class="row">
-      <!-- Другий ряд -->
+      
       <div class="col-md-6 mb-4">
         <div class="card" style="width: 100%;">
           <img src="images /41.jpeg" class="card-img-top" alt="...">
@@ -249,7 +251,6 @@
     </div>
   
     <div class="row">
-      <!-- Третій ряд -->
       <div class="col-md-6 mb-4">
         <div class="card" style="width: 100%;">
           <img src="images /43.jpeg" class="card-img-top" alt="...">
@@ -272,15 +273,15 @@
         </div>
       </div>
     </div>
-     </div>
+     </div> -->
      
      <footer class="bg-primary text-center py-3">
          <p>&copy; MaliVa</p>
-      </footer>
+    </footer>
 
       
       </body>
-      <script>
+      <!-- <script>
         function increment(item) {
             var quantityElement = document.getElementById(item);
             var quantity = parseInt(quantityElement.value, 10);
@@ -296,22 +297,16 @@
         }
     
         function submitOrder() {
-            // Отримати значення для кожного товару
+   
             var karamelQuantity = parseInt(document.getElementById('karamel').value, 10);
             var chornitsyaQuantity = parseInt(document.getElementById('chornitsya').value, 10);
             var bez_nachinkiQuantity = parseInt(document.getElementById('bez_nachinki').value, 10);
     
-            // Отримати значення для нових товарів
+
             var makQuantity = parseInt(document.getElementById('mak').value, 10);
             var vishnyaQuantity = parseInt(document.getElementById('vishnya').value, 10);
     
-            // Отримати інші дані для замовлення (якщо потрібно)
-            // ...
-    
-            // Ваш код для обробки замовлення
-            // ...
-    
-            // Звернення до нових товарів:
+
             console.log('Кількість Маку: ' + makQuantity);
             console.log('Кількість Вишні: ' + vishnyaQuantity);
             console.log('Кількість Карамелі: ' + karamelQuantity);
@@ -319,7 +314,7 @@
             console.log('Кількість Без начинки: ' + bez_nachinkiQuantity);
         }
     </script>
-    
+     -->
       <script>
         // Функція для збільшення значення
         function increment(id) {
@@ -345,34 +340,34 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="js /bootstrap.bundle.js"></script>
-        <script>
-        // Задайте дату Різдва (місяць в JavaScript починається з 0, тобто грудень - 11)
+        <!-- <script>
+        
         var christmasDate = new Date(2023, 11, 25, 0, 0, 0, 0).getTime();
 
-        // Оновлення таймера кожну секунду
+        
         var x = setInterval(function() {
-            // Поточна дата та час
+            
             var now = new Date().getTime();
 
-            // Різниця між поточною датою та Різдвом
+            
             var distance = christmasDate - now;
 
-            // Обчислення днів, годин, хвилин та секунд
+            
             var days = Math.floor(distance / (1000 * 60 * 60 * 24));
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Виведення таймера в елемент з id "timer"
+            
             document.getElementById("timer").innerHTML = days + "д " + hours + "г " + minutes + "хв " + seconds + "с ";
 
-            // Якщо таймер вже завершено (Різдво), виведіть повідомлення
+            
             if (distance < 0) {
                 clearInterval(x);
                 document.getElementById("timer").innerHTML = "З Різдвом!";
             }
         }, 1000);
-    </script>
+    </script> -->
 
       <!-- Скрипт для зміни зображення при наведенні курсора -->
       <script>
@@ -403,4 +398,203 @@
          });
          
       </script>
+       <script>
+        // Глобальна змінна для кошика (така сама як у breakfast.html)
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // Функція для оновлення лічильника кошика (така сама)
+        function updateCartCount() {
+            try {
+                const cartCount = document.getElementById('cart-count');
+                if (cartCount) {
+                    cartCount.textContent = cart.length;
+                }
+            } catch (error) {
+                console.error('Помилка оновлення лічильника:', error);
+            }
+        }
+
+        // Функція для додавання товару до кошика (така сама)
+        function addToCart(product) {
+            try {
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                alert(`Додано до кошика: ${product.name}`);
+            } catch (error) {
+                console.error('Помилка додавання до кошика:', error);
+                alert('Не вдалося додати товар до кошика');
+            }
+        }
+
+        // Завантаження продуктів при завантаженні сторінки
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            const container = document.getElementById('product-container');
+            if (!container) {
+                console.error('Контейнер продуктів не знайдено');
+                return;
+            }
+
+            // ЄДИНЕ ВІДМІННЕ МІСЦЕ - змінюємо URL на '/xmas-products'
+            fetch('http://localhost:3000/xmas-products')
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`Помилка сервера: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then(products => {
+                if (!Array.isArray(products)) {
+                  throw new Error('Отримані дані не є масивом');
+                }
+
+                container.innerHTML = ''; // Очищаємо контейнер
+
+                if (products.length === 0) {
+                  container.innerHTML = '<p class="text-center">Наразі немає доступних різдвяних подарунків</p>';
+                  return;
+                }
+
+                // Створення карток продуктів (таке саме як у breakfast.html)
+                products.forEach(product => {
+                  const card = document.createElement('div');
+                  card.className = 'col-md-4 mb-4';
+
+                  card.innerHTML = `
+                    <div class="card product-card" style="width: 18rem; position: relative;">
+                      <button class="add-to-cart-btn" title="Додати до кошика">+</button>
+                      <img src="${product.image || 'images/default-gift.jpg'}" 
+                           class="card-img-top" 
+                           alt="${product.name}"
+                           onerror="this.src='images/default-gift.jpg'">
+                      <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.description || ''}</p>
+                        <h5>${product.price} грн</h5>
+                      </div>
+                    </div>`;
+
+                  card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+                    addToCart(product);
+                  });
+
+                  container.appendChild(card);
+                });
+              })
+              .catch(error => {
+                console.error('Помилка:', error);
+                container.innerHTML = `
+                  <div class="alert alert-danger">
+                    Помилка завантаження різдвяних подарунків: ${error.message}
+                  </div>
+                  <button onclick="window.location.reload()" class="btn btn-primary mt-2">
+                    Спробувати ще раз
+                  </button>`;
+              });
+        });
+    </script>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+        });
+        
+        searchInput.addEventListener('input', function() {
+            if (searchInput.value.trim().length >= 2) {
+                performSearch();
+            } else {
+                searchResultsContainer.style.display = 'none';
+            }
+        });
+        
+        searchInput.addEventListener('focus', function() {
+            searchIcon.style.color = '#992F45';
+            if (searchInput.value.trim().length >= 2 && searchResultsContainer.children.length > 0) {
+                searchResultsContainer.style.display = 'block';
+            }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            searchIcon.style.color = '#D9A3A3';
+            setTimeout(() => {
+                searchResultsContainer.style.display = 'none';
+            }, 200);
+        });
+        
+        searchResultsContainer.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+        });
+    }
+    
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query.length < 2) {
+            searchResultsContainer.style.display = 'none';
+            return;
+        }
+        
+        try {
+            const response = await fetch(`http://localhost:3000/api/search?query=${encodeURIComponent(query)}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.length > 0) {
+                displayResults(data);
+            } else if (response.ok && data.length === 0) {
+                searchResultsContainer.innerHTML = '<div class="search-result-item">Нічого не знайдено</div>';
+                searchResultsContainer.style.display = 'block';
+            } else {
+                searchResultsContainer.innerHTML = `<div class="search-result-item">${data.message || 'Помилка пошуку'}</div>`;
+                searchResultsContainer.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Помилка пошуку:', error);
+            searchResultsContainer.innerHTML = '<div class="search-result-item">Помилка пошуку</div>';
+            searchResultsContainer.style.display = 'block';
+        }
+    }
+    
+    function displayResults(results) {
+        searchResultsContainer.innerHTML = '';
+        
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+                <div class="search-result-content">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" class="search-result-img">` : ''}
+                    <div class="search-result-text">
+                        <h5>${item.name}</h5>
+                        <p class="search-result-desc">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</p>
+                        <p class="search-result-price"><strong>${item.price} грн</strong></p>
+                    </div>
+                </div>
+            `;
+            
+            resultItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const page = item.categoryId === 1 ? 'breakfast.html' : 'xmasgifts.html';
+                window.location.href = `${page}?id=${item.id}`;
+            });
+            
+            searchResultsContainer.appendChild(resultItem);
+        });
+        
+        searchResultsContainer.style.display = 'block';
+    }
+});
+</script>
 </html>

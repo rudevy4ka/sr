@@ -56,7 +56,7 @@
                      Меню
                      </a>
                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./xmasgifts.html">NEW Різдвяні подарунки</a></li>
+                        <li><a class="dropdown-item" href="./xmasgifts.html">NEW Подарунки до дня матері</a></li>
                         <li><a class="dropdown-item" href="./breakfast.html">Сніданки</a></li>
                         <li><a class="dropdown-item" href="#">Випічка</a></li>
                         <li><a class="dropdown-item" href="#">Десерти</a></li>
@@ -67,6 +67,7 @@
                      </ul>
                   </li>
                </ul>
+
                <a href="https://www.instagram.com/rudevy4ka/" target="_blank">
                   <i class="bi bi-instagram big-icon"></i>
                 </a>
@@ -76,13 +77,14 @@
                <a href="https://www.tiktok.com/@x0fqt" target="_blank">  
                   <i class="bi bi-tiktok big-icon"></i>
                </a>
-               <form class="d-flex" role="search">
-                  <div class="input-container">
-                     <input class="form-control me-2" type="search" placeholder="" aria-label="Search" id="searchInput">
-                     <i class="bi bi-search search-icon" id="searchIcon"></i>
-                  </div>
-                  <button class="btn-custom mx-2" type="submit">Пошук</button>
-               </form>
+<form class="d-flex" role="search" id="searchForm">
+    <div class="input-container">
+        <input class="form-control me-2" type="search" placeholder="Пошук..." aria-label="Search" id="searchInput">
+        <i class="bi bi-search search-icon" id="searchIcon"></i>
+        <div id="searchResultsContainer" class="search-results-bottom"></div>
+    </div>
+    <button class="btn-custom mx-2" type="submit">Пошук</button>
+</form>
             </div>
          </div>
       </nav>
@@ -95,7 +97,7 @@
             <div class="buttons">
                 <br></br>
                 <a href="./xmasgifts.html">
-                    <button class="btn-custom mx-2" type="submit">Замовити Пампухи</button>
+                    <button class="btn-custom mx-2" type="submit">Замовити подарунок</button>
                 </a>
                 <a href="./breakfast.html">
                     <button class="btn-custom mx-2" type="submit">Замовити сніданок</button>
@@ -342,11 +344,24 @@
       </div>
       </div>
       </div>
+      <a href="cart.html" class="floating-cart" title="Перейти до кошика">
+        <i class="bi bi-bag-fill"></i>
+        <span id="cart-count">0</span>
+      </a>
       <!-- Футер сторінки з авторським правом -->
       <footer class="bg-primary text-center py-3">
          <p>&copy; MaliVa</p>
       </footer>
       <script src="js /bootstrap.bundle.js"></script>
+      <script>
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartCount = document.getElementById('cart-count');
+        cartCount.textContent = cart.length;
+      }
+
+      updateCartCount();
+    </script>
 
       <!-- Скрипт для зміни зображення при наведенні курсора -->
       <script>
@@ -377,5 +392,107 @@
          });
          
       </script>
+      <script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+        });
+        
+        searchInput.addEventListener('input', function() {
+            if (searchInput.value.trim().length >= 2) {
+                performSearch();
+            } else {
+                searchResultsContainer.style.display = 'none';
+            }
+        });
+        
+        searchInput.addEventListener('focus', function() {
+            searchIcon.style.color = '#992F45';
+            if (searchInput.value.trim().length >= 2 && searchResultsContainer.children.length > 0) {
+                searchResultsContainer.style.display = 'block';
+            }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            searchIcon.style.color = '#D9A3A3';
+            setTimeout(() => {
+                searchResultsContainer.style.display = 'none';
+            }, 200);
+        });
+        
+        searchResultsContainer.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+        });
+    }
+    
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query.length < 2) {
+            searchResultsContainer.style.display = 'none';
+            return;
+        }
+        
+        try {
+            const response = await fetch(`http://localhost:3000/api/search?query=${encodeURIComponent(query)}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.length > 0) {
+                displayResults(data);
+            } else if (response.ok && data.length === 0) {
+                searchResultsContainer.innerHTML = '<div class="search-result-item">Нічого не знайдено</div>';
+                searchResultsContainer.style.display = 'block';
+            } else {
+                searchResultsContainer.innerHTML = `<div class="search-result-item">${data.message || 'Помилка пошуку'}</div>`;
+                searchResultsContainer.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Помилка пошуку:', error);
+            searchResultsContainer.innerHTML = '<div class="search-result-item">Помилка пошуку</div>';
+            searchResultsContainer.style.display = 'block';
+        }
+    }
+    
+    function displayResults(results) {
+        searchResultsContainer.innerHTML = '';
+        
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+                <div class="search-result-content">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" class="search-result-img">` : ''}
+                    <div class="search-result-text">
+                        <h5>${item.name}</h5>
+                        <p class="search-result-desc">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</p>
+                        <p class="search-result-price"><strong>${item.price} грн</strong></p>
+                    </div>
+                </div>
+            `;
+            
+            resultItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const page = item.categoryId === 1 ? 'breakfast.html' : 'xmasgifts.html';
+                window.location.href = `${page}?id=${item.id}`;
+            });
+            
+            searchResultsContainer.appendChild(resultItem);
+        });
+        
+        searchResultsContainer.style.display = 'block';
+    }
+});
+</script>
    </body>
 </html>

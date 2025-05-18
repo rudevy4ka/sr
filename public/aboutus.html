@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
-    <!-- Мета-теги для кодування та властивостей відображення -->
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Заголовок сторінки -->
       <title>Самостійна робота</title>
-      <!-- Посилання на зовнішні CSS-стилі та шрифти -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
       <link rel="icon" href="images /27.png" sizes="40x40" type="image/png">
       <link rel="stylesheet" href="fonts /bi/bootstrap-icons.css" rel="stylesheet">
@@ -18,7 +15,6 @@
       <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bellota&family=Comfortaa:wght@300&family=Cormorant&family=Cormorant+Infant:wght@400;500&family=Kiwi+Maru:wght@500&family=Noto+Serif&family=Nunito&family=PT+Sans+Caption&family=Playfair+Display&family=Poiret+One&family=Raleway:ital,wght@0,100;0,200;1,100;1,200&family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
    </head>
    <body>
-     <!-- Навігаційне меню з логотипом та посиланнями -->
      <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
            <a class="navbar-brand" href="#">MaliVa</a>
@@ -51,7 +47,7 @@
                     Меню
                     </a>
                     <ul class="dropdown-menu">
-                       <li><a class="dropdown-item" href="./xmasgifts.html">NEW Різдвяні подарунки</a></li>
+                       <li><a class="dropdown-item" href="./xmasgifts.html">NEW Подарунки до дня матері</a></li>
                        <li><a class="dropdown-item" href="./breakfast.html">Сніданки</a></li>
                        <li><a class="dropdown-item" href="#">Випічка</a></li>
                        <li><a class="dropdown-item" href="#">Десерти</a></li>
@@ -71,13 +67,17 @@
               <a href="https://www.tiktok.com/@x0fqt" target="_blank">  
                  <i class="bi bi-tiktok big-icon"></i>
               </a>
-              <form class="d-flex" role="search">
-                 <div class="input-container">
-                    <input class="form-control me-2" type="search" placeholder="" aria-label="Search" id="searchInput">
-                    <i class="bi bi-search search-icon" id="searchIcon"></i>
-                 </div>
-                 <button class="btn-custom mx-2" type="submit">Пошук</button>
-              </form>
+<form class="d-flex" role="search" id="searchForm">
+    <div class="input-container">
+        <input class="form-control me-2" type="search" placeholder="Пошук..." aria-label="Search" id="searchInput">
+        <i class="bi bi-search search-icon" id="searchIcon"></i>
+        <div id="searchResultsContainer" class="search-results-bottom"></div> <!-- Переміщено сюди -->
+    </div>
+    <button class="btn-custom mx-2" type="submit">Пошук</button>
+</form>
+
+<!-- Додано контейнер для результатів під формою -->
+<div id="searchResultsContainer" class="search-results-bottom"></div>
            </div>
         </div>
      </nav>
@@ -131,9 +131,15 @@
                 </div>
     
                 <div class="form-group">
+                    <label for="rating">Оцінка (1-5):</label>
+                    <input type="number" id="rating" name="rating" class="form-control" min="1" max="5" required>
+                </div>
+    
+                <div class="form-group">
                     <label for="feedback">Ваш відгук:</label>
                     <textarea id="feedback" name="feedback" class="form-control" required></textarea>
                 </div>
+                <input type="hidden" id="orderId" name="orderId" value="">
                 <button class="btn-custom mx-2" type="button" onclick="submitFeedback()">Надіслати</button>
             </form>
             </div>
@@ -147,118 +153,173 @@
             </div>
      </div>
      <footer class="bg-primary text-center py-3">
-         <p>&copy; MaliVa</p>
+         <p>© MaliVa</p>
       </footer>
-      <script>function submitFeedback() {
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var feedback = document.getElementById("feedback").value;
-    
-        // Валідація Email за допомогою регулярного виразу
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            alert("Будь ласка, введіть коректний Email.");
-            return;
+      <script>
+         function submitFeedback() {
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var rating = document.getElementById("rating").value;
+            var feedback = document.getElementById("feedback").value;
+            var orderId = document.getElementById("orderId").value;
+
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert("Будь ласка, введіть коректний Email.");
+                return;
+            }
+
+            if (name && email && rating && feedback) {
+                fetch('http://localhost:3000/submit-review', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name: name, email: email, rating: rating, comment: feedback, orderId: orderId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById("name").value = "";
+                        document.getElementById("email").value = "";
+                        document.getElementById("rating").value = "";
+                        document.getElementById("feedback").value = "";
+                        document.getElementById("orderId").value = "";
+                        showSuccessAlert();
+                    } else {
+                        alert("Помилка при відправці відгуку.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Помилка:', error);
+                    alert("Помилка при відправці відгуку.");
+                });
+            } else {
+                alert("Будь ласка, заповніть усі поля форми.");
+            }
         }
-    
-        // Перевірка, чи є введені дані
-        if (name && email && feedback) {
-            // Відправка даних на сервер (можна використовувати AJAX або інші методи)
-            // Наприклад, використовуючи fetch або XMLHttpRequest
-            // fetch('submitFeedback.php', {
-            //     method: 'POST',
-            //     body: JSON.stringify({ name: name, email: email, feedback: feedback }),
-            //     headers: {
-            //         'Content-Type': 'application/json'
-            //     }
-            // });
-    
-            // Очистка полів форми
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("feedback").value = "";
-    
-            // Показати вікно "Дякуємо за ваш відгук"
-            showThankYou();
-        } else {
-            alert("Будь ласка, заповніть усі поля форми.");
-        }
-    }
-    
-    function showThankYou() {
-        // Показати вікно "Дякуємо за ваш відгук"
-        var resultsDiv = document.getElementById("results");
-        resultsDiv.classList.remove("hidden");
-    
-        // Затримка відображення на 3 секунди (можна змінити за потребою)
-        setTimeout(function() {
-            // Сховати вікно після затримки
-            resultsDiv.classList.add("hidden");
-        }, 3000);
-    }
-    </script>
-      <script>// Після функції showThankYou() додайте виклик showSuccessAlert()
-        function showThankYou() {
-            // ... (інші дії)
-        
-            // Відобразити вікно "Дякуємо за ваш відгук"
-            showSuccessAlert();
-        }
-        
+
         function showSuccessAlert() {
-            // Визначте елементи
             var alertContainer = document.getElementById("alertContainer");
             var alertBox = document.getElementById("alertBox");
             var alertMessage = document.getElementById("alertMessage");
-        
-            // Встановіть текст повідомлення
+
             alertMessage.textContent = "Дякуємо за ваш відгук!💖";
-        
-            // Показати вікно
+
             alertContainer.classList.add("alert-show");
-        
-            // Через 3 секунди приховати вікно
+
             setTimeout(function () {
                 hideAlert();
             }, 3000);
         }
-        
+
         function hideAlert() {
-            // Приховати вікно
             var alertContainer = document.getElementById("alertContainer");
             alertContainer.classList.remove("alert-show");
         }
-        </script>
+      </script>
       <script src="js /bootstrap.bundle.js"></script>
-
-      <!-- Скрипт для зміни зображення при наведенні курсора -->
-      <script>
-         function changeImageOnHover(element, newSrc) {
-           element.setAttribute("src", newSrc);
-         }
-         
-         function restoreImageOnMouseOut(element, originalSrc) {
-           element.setAttribute("src", originalSrc);
-         }
-      </script>
-      <!-- Скрипт для зміни видимості іконки лупи при фокусу на полі вводу -->
-      <script>
-         // Отримання елементів поля вводу та іконки лупи за ідентифікаторами
-         const searchInput = document.getElementById('searchInput');
-         const searchIcon = document.getElementById('searchIcon');
-         
-         // Додавання слухача подій для фокусу на полі вводу
-         searchInput.addEventListener('focus', function() {
-         // При фокусі на полі вводу ховаємо іконку лупи
-         searchIcon.style.display = 'none';
-         });
-         
-         // Додавання слухача подій для зміни фокусу на полі вводу
-         searchInput.addEventListener('blur', function() {
-         // При зміні фокусу на полі вводу відображаємо іконку лупи
-         searchIcon.style.display = 'block';
-         });
-         
-      </script>
-      </body>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+        });
+        
+        searchInput.addEventListener('input', function() {
+            if (searchInput.value.trim().length >= 2) {
+                performSearch();
+            } else {
+                searchResultsContainer.style.display = 'none';
+            }
+        });
+        
+        searchInput.addEventListener('focus', function() {
+            searchIcon.style.color = '#992F45';
+            if (searchInput.value.trim().length >= 2 && searchResultsContainer.children.length > 0) {
+                searchResultsContainer.style.display = 'block';
+            }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            searchIcon.style.color = '#D9A3A3';
+            setTimeout(() => {
+                searchResultsContainer.style.display = 'none';
+            }, 200);
+        });
+        
+        searchResultsContainer.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+        });
+    }
+    
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query.length < 2) {
+            searchResultsContainer.style.display = 'none';
+            return;
+        }
+        
+        try {
+            const response = await fetch(`http://localhost:3000/api/search?query=${encodeURIComponent(query)}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.length > 0) {
+                displayResults(data);
+            } else if (response.ok && data.length === 0) {
+                searchResultsContainer.innerHTML = '<div class="search-result-item">Нічого не знайдено</div>';
+                searchResultsContainer.style.display = 'block';
+            } else {
+                searchResultsContainer.innerHTML = `<div class="search-result-item">${data.message || 'Помилка пошуку'}</div>`;
+                searchResultsContainer.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Помилка пошуку:', error);
+            searchResultsContainer.innerHTML = '<div class="search-result-item">Помилка пошуку</div>';
+            searchResultsContainer.style.display = 'block';
+        }
+    }
+    
+    function displayResults(results) {
+        searchResultsContainer.innerHTML = '';
+        
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+                <div class="search-result-content">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" class="search-result-img">` : ''}
+                    <div class="search-result-text">
+                        <h5>${item.name}</h5>
+                        <p class="search-result-desc">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</p>
+                        <p class="search-result-price"><strong>${item.price} грн</strong></p>
+                    </div>
+                </div>
+            `;
+            
+            resultItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const page = item.categoryId === 1 ? 'breakfast.html' : 'xmasgifts.html';
+                window.location.href = `${page}?id=${item.id}`;
+            });
+            
+            searchResultsContainer.appendChild(resultItem);
+        });
+        
+        searchResultsContainer.style.display = 'block';
+    }
+});
+</script>
+   </body>
 </html>

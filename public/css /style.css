@@ -361,4 +361,209 @@ textarea.form-control {
     height: auto;
     transition: transform 0.3s;
 }
+.product-card {
+    position: relative;
+    transition: transform 0.3s ease;
+  }
 
+  .product-card:hover {
+    transform: scale(1.02);
+  }
+
+  .add-to-cart-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #992F45;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+.product-card:hover .add-to-cart-btn {
+    display: flex;
+}
+.floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #992F45;
+  color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 28px;
+  z-index: 999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.floating-cart:hover {
+  transform: scale(1.1);
+}
+.floating-cart i {
+  color: white;
+  transition: none;
+}
+
+.floating-cart:hover i {
+  color: white !important; /* ← Забороняємо зміну кольору */
+}
+
+
+#cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #FAE6E7;
+  color: #992F45;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body.mothers-day-page {
+    background-image: url('/images /37.jpeg') !important;
+    background-color: transparent !important;
+}
+#searchForm {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.input-container {
+    position: relative;
+    margin-right: 10px;
+}
+
+#searchInput {
+    padding-left: 35px;
+    padding-right: 15px;
+    width: 250px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid #D9A3A3;
+    background-color: #FFF5F5;
+    color: #992F45;
+    font-size: 14px;
+}
+
+#searchInput::placeholder {
+    color: #D9A3A3;
+}
+
+#searchInput:focus {
+    border-color: #992F45;
+    box-shadow: 0 0 0 0.2rem rgba(153, 47, 69, 0.15);
+    outline: none;
+}
+
+#searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #D9A3A3;
+    pointer-events: none;
+}
+
+/* Оновлені стилі для контейнера результатів пошуку */
+#searchResultsContainer {
+    position: absolute;
+    top: calc(100% + 5px); /* Зсуває контейнер під поле вводу */
+    left: 0; /* Вирівнювання по лівому краю поля вводу */
+    width: 250px; /* Ширина збережена як у поля вводу */
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 1000;
+    display: none;
+}
+
+/* Стилі для елементів результатів */
+.search-result-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #F0F0F0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: #FFF0F2;
+}
+
+/* Контейнер для вмісту результату */
+.search-result-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стилі для зображення */
+.search-result-img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+}
+
+/* Текстовий блок */
+.search-result-text {
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Заголовок результату */
+.search-result-text h5 {
+    color: #333333;
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Опис */
+.search-result-desc {
+    color: #666666;
+    margin: 2px 0 0;
+    font-size: 12px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Ціна */
+.search-result-price {
+    color: #992F45;
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 3px;
+}

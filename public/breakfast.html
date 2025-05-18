@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+    <!-- Мета-теги для кодування та властивостей відображення -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Заголовок сторінки -->
+      <title>Курсова робота</title>
+      <!-- Посилання на зовнішні CSS-стилі та шрифти -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/line-awesome@1.3.0/dist/line-awesome/css/line-awesome.min.css">
+      <link rel="icon" href="images /27.png" sizes="40x40" type="image/png">
+      <link rel="stylesheet" href="fonts /bi/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" href="css /style.css" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Amatic+SC&family=Bellota&family=Comfortaa:wght@300&family=Cormorant&family=Cormorant+Infant:wght@400;500&family=Kiwi+Maru:wght@500&family=Noto+Serif&family=Nunito&family=PT+Sans+Caption&family=Playfair+Display&family=Poiret+One&family=Raleway:ital,wght@0,100;0,200;1,100;1,200&family=Roboto:ital,wght@0,100;1,300&display=swap" rel="stylesheet">
+   </head>
+   <body>
+     <!-- Навігаційне меню з логотипом та посиланнями -->
+     <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+           <a class="navbar-brand" href="#">MaliVa</a>
+           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="navbar-toggler-icon"></span>
+           </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                 <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="./index.html">Головна</a>
+                 </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="./aboutus.html">Про нас</a>
+                 </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="./index.html" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Локації
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="./index.html#map1">м. Львів, Сахарова 23</a></li>
+                       <li><a class="dropdown-item" href="./index.html#map2">м. Львів, Бандери 12</a></li>
+                       <li>
+                          <hr class="dropdown-divider">
+                       </li>
+                       <li><a class="dropdown-item" href="#">Інші міста...</a></li>
+                    </ul>
+                 </li>
+                 <li class="nav-item dropdown">
+                    <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Меню
+                    </a>
+                    <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="./xmasgifts.html">NEW Подарунки до дня матері</a></li>
+                       <li><a class="dropdown-item" href="./breakfast.html">Сніданки</a></li>
+                       <li><a class="dropdown-item" href="#">Випічка</a></li>
+                       <li><a class="dropdown-item" href="#">Десерти</a></li>
+                       <li><a class="dropdown-item" href="#">Напої</a></li>
+                       <li><a class="dropdown-item" href="#">Макарони</a></li>
+                       <li><a class="dropdown-item" href="#">Еклери</a></li>
+                       <li><a class="dropdown-item" href="#">Кекси</a></li>
+                    </ul>
+                 </li>
+              </ul>
+              <a href="https://www.instagram.com/rudevy4ka/" target="_blank">
+                 <i class="bi bi-instagram big-icon"></i>
+               </a>
+              <a href="https://www.facebook.com/marta.rudevich/?locale=uk_UA" target="_blank">                 
+                 <i class="bi bi-facebook big-icon"></i>
+              </a>
+              <a href="https://www.tiktok.com/@x0fqt" target="_blank">  
+                 <i class="bi bi-tiktok big-icon"></i>
+              </a>
+              <form class="d-flex" role="search" id="searchForm">
+                  <div class="input-container">
+                      <input class="form-control me-2" type="search" placeholder="Пошук..." aria-label="Search" id="searchInput">
+                      <i class="bi bi-search search-icon" id="searchIcon"></i>
+                      <div id="searchResultsContainer" class="search-results-bottom"></div>
+                  </div>
+                  <button class="btn-custom mx-2" type="submit">Пошук</button>
+              </form>
+           </div>
+        </div>
+     </nav>
+     <div class="container">
+        <h1>Сніданки від MaliVa:</h1>
+        <br></br>
+
+        <div class="container">
+
+          <div id="product-container" class="row"></div>
+        </div>
+        <script>
+          // Глобальна змінна для кошика
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+          // Функція для оновлення лічильника кошика
+          function updateCartCount() {
+            try {
+              const cartCount = document.getElementById('cart-count');
+              if (cartCount) {
+                cartCount.textContent = cart.length;
+              }
+            } catch (error) {
+              console.error('Помилка оновлення лічильника:', error);
+            }
+          }
+
+          // Функція для додавання товару до кошика
+          function addToCart(product) {
+            try {
+              cart.push(product);
+              localStorage.setItem('cart', JSON.stringify(cart));
+              updateCartCount();
+              alert(`Додано до кошика: ${product.name}`);
+            } catch (error) {
+              console.error('Помилка додавання до кошика:', error);
+              alert('Не вдалося додати товар до кошика');
+            }
+          }
+
+          // Завантаження продуктів при завантаженні сторінки
+          document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            const container = document.getElementById('product-container');
+            if (!container) {
+              console.error('Контейнер продуктів не знайдено');
+              return;
+            }
+
+            // Запит до API для сніданків
+            fetch('http://localhost:3000/breakfast-products')
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error(`Помилка сервера: ${response.status}`);
+                }
+                return response.json();
+              })
+              .then(products => {
+                if (!Array.isArray(products)) {
+                  throw new Error('Отримані дані не є масивом');
+                }
+
+                container.innerHTML = ''; // Очищаємо контейнер
+
+                if (products.length === 0) {
+                  container.innerHTML = '<p class="text-center">Наразі немає доступних сніданків</p>';
+                  return;
+                }
+
+                // Створення карток продуктів
+                products.forEach(product => {
+                  const card = document.createElement('div');
+                  card.className = 'col-md-4 mb-4';
+
+                  card.innerHTML = `
+                    <div class="card product-card" style="width: 18rem; position: relative;">
+                      <button class="add-to-cart-btn" title="Додати до кошика">+</button>
+                      <img src="${product.image || 'images/default-food.jpg'}" 
+                           class="card-img-top" 
+                           alt="${product.name}"
+                           onerror="this.src='images/default-food.jpg'">
+                      <div class="card-body">
+                        <h5 class="card-title">${product.name}</h5>
+                        <p class="card-text">${product.description || ''}</p>
+                        <h5>${product.price} грн</h5>
+                      </div>
+                    </div>`;
+
+                  card.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+                    addToCart(product);
+                  });
+
+                  container.appendChild(card);
+                });
+              })
+              .catch(error => {
+                console.error('Помилка:', error);
+                container.innerHTML = `
+                  <div class="alert alert-danger">
+                    Помилка завантаження меню: ${error.message}
+                  </div>
+                  <button onclick="window.location.reload()" class="btn btn-primary mt-2">
+                    Спробувати ще раз
+                  </button>`;
+              });
+          });
+        </script>
+     <a href="cart.html" class="floating-cart" title="Перейти до кошика">
+      <i class="bi bi-bag-fill"></i>
+      <span id="cart-count">0</span>
+    </a>
+
+
+     <footer class="bg-primary text-center py-3">
+         <p>&copy; MaliVa</p>
+     </footer>
+      
+      <script src="js /bootstrap.bundle.js"></script>
+
+      <!-- Скрипт для зміни зображення при наведенні курсора -->
+      <script>
+         function changeImageOnHover(element, newSrc) {
+           element.setAttribute("src", newSrc);
+         }
+         
+         function restoreImageOnMouseOut(element, originalSrc) {
+           element.setAttribute("src", originalSrc);
+         }
+      </script>
+      <!-- Скрипт для зміни видимості іконки лупи при фокусу на полі вводу -->
+      <script>
+         // Отримання елементів поля вводу та іконки лупи за ідентифікаторами
+         const searchInput = document.getElementById('searchInput');
+         const searchIcon = document.getElementById('searchIcon');
+         
+         // Додавання слухача подій для фокусу на полі вводу
+         searchInput.addEventListener('focus', function() {
+         // При фокусі на полі вводу ховаємо іконку лупи
+         searchIcon.style.display = 'none';
+         });
+         
+         // Додавання слухача подій для зміни фокусу на полі вводу
+         searchInput.addEventListener('blur', function() {
+         // При зміні фокусу на полі вводу відображаємо іконку лупи
+         searchIcon.style.display = 'block';
+         });
+         
+      </script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Отримуємо ID продукту з URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    
+    if (productId) {
+        loadProductDetails(productId);
+    }
+});
+
+async function loadProductDetails(productId) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/product/${productId}`);
+        const data = await response.json();
+        
+        if (data.success) {
+            displayProductDetails(data.product);
+        } else {
+            console.error('Продукт не знайдено');
+        }
+    } catch (error) {
+        console.error('Помилка завантаження продукту:', error);
+    }
+}
+
+function displayProductDetails(product) {
+    // Тут реалізуйте відображення деталей продукту
+    // Наприклад, можна показати модальне вікно або прокрутити до відповідного продукту на сторінці
+    console.log('Відображення продукту:', product);
+    
+    // Приклад для модального вікна:
+    const modal = new bootstrap.Modal(document.getElementById('productModal'));
+    document.getElementById('modalProductName').textContent = product.name;
+    document.getElementById('modalProductDescription').textContent = product.description;
+    document.getElementById('modalProductPrice').textContent = `${product.price} грн`;
+    
+    const modalImage = document.getElementById('modalProductImage');
+    if (product.image) {
+        modalImage.src = product.image;
+        modalImage.style.display = 'block';
+    } else {
+        modalImage.style.display = 'none';
+    }
+    
+    modal.show();
+}
+      </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = document.getElementById('searchInput');
+    const searchIcon = document.getElementById('searchIcon');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (searchForm && searchInput) {
+        searchForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            performSearch();
+        });
+        
+        searchInput.addEventListener('input', function() {
+            if (searchInput.value.trim().length >= 2) {
+                performSearch();
+            } else {
+                searchResultsContainer.style.display = 'none';
+            }
+        });
+        
+        searchInput.addEventListener('focus', function() {
+            searchIcon.style.color = '#992F45';
+            if (searchInput.value.trim().length >= 2 && searchResultsContainer.children.length > 0) {
+                searchResultsContainer.style.display = 'block';
+            }
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            searchIcon.style.color = '#D9A3A3';
+            setTimeout(() => {
+                searchResultsContainer.style.display = 'none';
+            }, 200);
+        });
+        
+        searchResultsContainer.addEventListener('mousedown', function(e) {
+            e.preventDefault();
+        });
+    }
+    
+    async function performSearch() {
+        const query = searchInput.value.trim();
+        
+        if (query.length < 2) {
+            searchResultsContainer.style.display = 'none';
+            return;
+        }
+        
+        try {
+            const response = await fetch(`http://localhost:3000/api/search?query=${encodeURIComponent(query)}`, {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            const data = await response.json();
+            
+            if (response.ok && data.length > 0) {
+                displayResults(data);
+            } else if (response.ok && data.length === 0) {
+                searchResultsContainer.innerHTML = '<div class="search-result-item">Нічого не знайдено</div>';
+                searchResultsContainer.style.display = 'block';
+            } else {
+                searchResultsContainer.innerHTML = `<div class="search-result-item">${data.message || 'Помилка пошуку'}</div>`;
+                searchResultsContainer.style.display = 'block';
+            }
+        } catch (error) {
+            console.error('Помилка пошуку:', error);
+            searchResultsContainer.innerHTML = '<div class="search-result-item">Помилка пошуку</div>';
+            searchResultsContainer.style.display = 'block';
+        }
+    }
+    
+    function displayResults(results) {
+        searchResultsContainer.innerHTML = '';
+        
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'search-result-item';
+            resultItem.innerHTML = `
+                <div class="search-result-content">
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" class="search-result-img">` : ''}
+                    <div class="search-result-text">
+                        <h5>${item.name}</h5>
+                        <p class="search-result-desc">${item.description.substring(0, 50)}${item.description.length > 50 ? '...' : ''}</p>
+                        <p class="search-result-price"><strong>${item.price} грн</strong></p>
+                    </div>
+                </div>
+            `;
+            
+            resultItem.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const page = item.categoryId === 1 ? 'breakfast.html' : 'xmasgifts.html';
+                window.location.href = `${page}?id=${item.id}`;
+            });
+            
+            searchResultsContainer.appendChild(resultItem);
+        });
+        
+        searchResultsContainer.style.display = 'block';
+    }
+});
+</script>
+
+
+      </body>
+</html>
